@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mahlzeit</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<header>
+		<h2>Mahlzeit</h2>
+		<ul>
+			<li><a href="#">Entdecken</a></li>
+			<li><a href="#">Kategorien</a></li>
+			<li><a href="#" class="surprise-button">Zufallsrezept</a></li>
+		</ul>
+	</header>
+    <main>
+		<a href="/index.html" class="back-button">Zurück zur übersicht</a>
+		<div id="dish-container">
+			<img id="dish-image">
+			<ul id="dish-contry-and-categories">
+				<li id="dish-country"></li>
+				<li id="dish-category"></li>
+			</ul>
+			<h1 id="dish-title">Gerichtstitel</h1>
+
+			<a id="dish-video-link" href="#" target="_blank">Video ansehen</a>
+			<a class="surprise-button" href="#" >Anderes Rezept</a>
+
+			<h3>Zutaten:</h3>
+			<ul id="dish-ingredients"></ul>
+			<div class="dish-instructions-container">
+				<h3>Zubereitung:</h3>
+				<p class="dish-instructions">
+					<div class="dish-instructions-number">1</div>
+					Zubereitungsanleitung...
+				</p>
+			</div>
+	</main>	
+	<footer>
+		<p>Rezeptdaten von  <a href="https://www.themealdb.com" target="_blank">TheMealDB.com</a></p>
+	</footer>
+	<script type="module" src="assets/js/main.js" defer></script>
+	<script type="module" src="assets/js/dish.js" defer></script>
+</body>
+</html>

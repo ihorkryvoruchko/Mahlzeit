@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mahlzeit</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+	<header>
+		<h2>Mahlzeit</h2>
+		<ul>
+			<li><a href="#">Entdecken</a></li>
+			<li><a href="#">Kategorien</a></li>
+			<li><a href="#" class="surprise-button">Zufallsrezept</a></li>
+		</ul>
+	</header>
+    <main>
+		<h1>Was kochen wir heute?</h1>	
+		<h3>Suche nach einem Gericht oder lass dich überraschen</h3>
+		
+		<form>
+			<input id="search-input" type="text" placeholder="z.B. Spaghetti Bolognese">
+			<input id="search-button" type="button" value="Suchen">
+			<input class="surprise-button" type="button" value="Überrasch mich">
+		</form>
+
+		<div>
+			<ul id="category-container">
+				<li><a href="#">Alle</a></li>
+			</ul>
+		</div>
+
+		<div>
+			<h1>Gerichte</h1>
+			<div id="dish-container"></div>
+	    </div>
+	</main>	
+	<footer>
+		<p>Rezeptdaten von  <a href="https://www.themealdb.com" target="_blank">TheMealDB.com</a></p>
+	</footer>	
+	<script type="module" src="assets/js/main.js"></script>
+	<script type="module" src="assets/js/categories.js"></script>
+	<script type="module" src="assets/js/dishes.js"></script>
+</body>
+</html>
