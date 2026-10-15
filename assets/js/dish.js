@@ -4,6 +4,7 @@ const dishImage = document.getElementById('dish-image');
 const dishCountry = document.getElementById('dish-country');
 const dishCategory = document.getElementById('dish-category');
 const dishTitle = document.getElementById('dish-title');
+const dishIngredients = document.getElementById('dish-ingredients');
 
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
@@ -24,18 +25,18 @@ function showDishDetails(dish) {
     dishTitle.textContent = dish.strMeal;
 
     const ingredientsList = getKeysStartingWith(dish, 'strIngredient');
-    console.log(ingredientsList);
+    
     for (let i = 1; i <= ingredientsList.length; i++) {
         const ingredient = dish[`strIngredient${i}`];
         const measure = dish[`strMeasure${i}`];
         if (ingredient) {
             const zutatenLi = document.createElement('li');
             zutatenLi.textContent = ingredient + ' - ' + measure;
-            document.getElementById('dish-ingredients').appendChild(zutatenLi);
+            dishIngredients.appendChild(zutatenLi);
         }
     }
     
-
+    
 }
 
 
