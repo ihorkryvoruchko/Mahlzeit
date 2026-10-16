@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showDishDetails(dish) {
-    dishImage.src = dish.strMealThumb;
+    dishImage.src = dish.strMealThumb + '/medium';
     dishImage.alt = dish.strMeal;
     dishCountry.textContent = dish.strArea;
     dishCategory.textContent = dish.strCategory;
@@ -40,7 +40,6 @@ function showDishDetails(dish) {
     
     schowDishInstructions(dish)
 }
-
 
 async function getDish(dishId) {
     const path = dishId ? 'lookup.php?i=' + dishId : 'random.php'

@@ -1,57 +1,98 @@
-import { url } from './main.js';
+import { url } from './main.js'
 
-const dishList = [];
-const dishContainer = document.getElementById('dish-container');
+const dishList = []
+const dishContainer = document.getElementById('dish-container')
+const dishHeaderContainer = document.getElementById('dish-header')
+const searchInput = document.getElementById('search-input')
+const searchButton = document.getElementById('search-button')
 
 document.addEventListener('DOMContentLoaded', () => {
-    showDishes();
-});
+    const params = new URLSearchParams(window.location.search)
+    const category = params.get('category')
+    const search = params.get('search')
+    showDishes(category, search)
+})
 
-async function showDishes() {
-    await getDishes();
-    console.log(dishList);
+searchButton.addEventListener("click", (event) => {
+    document.location.href = `/index.html?search=${searchInput.value}`
+})
+
+async function showDishes(category, search) {
+    if (category) {
+        dishHeaderContainer.textContent = `${category} Gerichte`
+    }
+
+    await getDishes(category, search)
+
     for (const dish of dishList) {
-        const div = document.createElement('div');
-        div.classList.add('gericht-card');
+        const div = document.createElement('div')
+        div.classList.add('gericht-card')
 
-        const img = document.createElement('img');
-        img.src = dish.strMealThumb + '/small';
-        img.alt = dish.strMeal;
-        div.appendChild(img);
+        div.appendChild(createImg(dish))
+        div.appendChild(createCountryCategoryList(dish))
+        div.appendChild(createHeader(dish))
+        div.appendChild(createLink(dish))
 
-        const ul = document.createElement('ul');
-        ul.classList.add('dish-country-and-categorien-list');
-        
-        const liCountry = document.createElement('li');
-        liCountry.textContent = dish.strCountry;
-        ul.appendChild(liCountry);
-
-        for (const category of dish.strCategory.split(',')) {
-            const li = document.createElement('li');
-            li.textContent = category.trim();
-            ul.appendChild(li);
-        }
-
-        div.appendChild(ul);
-        const h4 = document.createElement('h4');
-        h4.classList.add('dish-title');
-        h4.textContent = dish.strMeal;
-        div.appendChild(h4);
-
-        const link = document.createElement('a');
-        link.href = '/dish.html?id=' + dish.idMeal;
-        link.classList.add('dish-link');
-        link.textContent = 'Rezept ansehen ->';
-        div.appendChild(link);
-
-        dishContainer.appendChild(div);
+        dishContainer.appendChild(div)
     }
 } 
+
+function createImg(dish) {
+    const img = document.createElement('img')
+    img.src = dish.strMealThumb + '/small'
+    img.alt = dish.strMeal
+
+    return img
+}
+
+function createCountryCategoryList(dish) {
+    const ul = document.createElement('ul')
+    ul.classList.add('dish-country-and-categorien-list')
+        
+    const liCountry = document.createElement('li')
+    liCountry.textContent = dish.strCountry
+    ul.appendChild(liCountry)
+
+    if (dish.strCategory) {
+        for (const category of dish.strCategory.split(',')) {
+            const li = document.createElement('li')
+            li.textContent = category.trim()
+            ul.appendChild(li)
+        }
+    }
+
+    return ul
+}
+
+function createHeader(dish) {
+    const header = document.createElement('h4')
+        header.classList.add('dish-title')
+        header.textContent = dish.strMeal
+    
+        return header
+}
+
+function createLink(dish) {
+    const link = document.createElement('a')
+        link.href = '/dish.html?id=' + dish.idMeal
+        link.classList.add('dish-link')
+        link.textContent = 'Rezept ansehen ->'
+
+    return link
+}
    
-async function getDishes() {
-    return fetch(url + 'search.php?s=a' )
+async function getDishes(category = null, search = null) {
+    let path = 'search.php?s=a'
+    
+    if (category) {
+        path = `filter.php?c=${category}`
+    } else if (search) {
+        path = 'search.php?s=' + search
+    }
+
+    return fetch(url + path)
         .then(response => response.json())
         .then(data => {
-            dishList.push(...data.meals);
-        });
+            dishList.push(...data.meals)
+        })
 }
