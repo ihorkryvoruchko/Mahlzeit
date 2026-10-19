@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 searchButton.addEventListener("click", (event) => {
-    document.location.href = `/index.html?search=${searchInput.value}`
+    document.location.href = `../index.html?search=${searchInput.value}`
 })
 
 async function showDishes(category, search) {
@@ -74,7 +74,7 @@ function createHeader(dish) {
 
 function createLink(dish) {
     const link = document.createElement('a')
-        link.href = '/dish.html?id=' + dish.idMeal
+        link.href = '../dish.html?id=' + dish.idMeal
         link.classList.add('dish-link')
         link.textContent = 'Rezept ansehen ->'
 
