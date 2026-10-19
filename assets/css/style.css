@@ -34,6 +34,11 @@ header h2 {
     font-size: 1.8rem;
 }
 
+header h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
 header ul {
     list-style: none;
     display: flex;
@@ -53,7 +58,7 @@ header ul li a:hover {
 }
 
 /* ========================================== */
-/* HAUPTBEREICH (MAIN)                        */
+/* HAUPTBEREICH (MAIN)                       */
 /* ========================================== */
 main {
     max-width: 1000px;
@@ -110,6 +115,7 @@ form {
     font-weight: 600;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
 }
 
 #search-button:hover, .btn:hover {
@@ -122,11 +128,10 @@ form {
 #category-container {
     list-style: none;
     display: flex;
+    flex-wrap: gap;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
     margin-bottom: 2rem;
-    white-space: nowrap;
 }
 
 #category-container li a {
@@ -138,6 +143,7 @@ form {
     border-radius: 20px;
     text-decoration: none;
     font-size: 0.9rem;
+    transition: all 0.2s;
 }
 
 #category-container li a:hover {
@@ -156,7 +162,6 @@ form {
     padding-bottom: 0.5rem;
 }
 
-/* GRID NUR AUF DER STARTSEITE FÜR DIE CARDS */
 main > div > #dish-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -190,6 +195,7 @@ main > div > #dish-container {
     padding: 0.8rem 1rem 0 1rem;
     font-size: 0.8rem;
     color: #888;
+    flex-wrap: wrap;
 }
 
 .dish-country-and-categorien-list li {
@@ -217,10 +223,8 @@ main > div > #dish-container {
 }
 
 /* ========================================== */
-/* DETAILSEITE (dish.html) FIX                */
+/* DETAILSEITE (dish.html)                    */
 /* ========================================== */
-
-/* Zurück Button */
 .back-button {
     display: inline-block;
     margin-bottom: 1.5rem;
@@ -233,7 +237,6 @@ main > div > #dish-container {
     color: #ff6b6b;
 }
 
-/* Der Hauptblock auf dish.html: KEIN GRID! Block-Layout verwenden */
 main > #dish-container {
     display: block !important;
     background: #ffffff;
@@ -242,7 +245,6 @@ main > #dish-container {
     box-shadow: 0 4px 6px rgba(0,0,0,0.04);
 }
 
-/* Bildbegrenzung auf der Detailseite */
 #dish-image {
     width: 100%;
     max-width: 400px;
@@ -254,13 +256,13 @@ main > #dish-container {
     display: block;
 }
 
-/* Tags (Land & Kategorie) */
 #dish-contry-and-categories {
     list-style: none;
     display: flex;
     gap: 0.5rem;
     margin-bottom: 0.8rem;
     padding: 0;
+    flex-wrap: wrap;
 }
 
 #dish-contry-and-categories li {
@@ -272,14 +274,12 @@ main > #dish-container {
     font-weight: 600;
 }
 
-/* Titel auf Detailseite */
 #dish-title {
     font-size: 2rem;
     color: #222;
     margin-bottom: 1rem;
 }
 
-/* Buttons auf der Detailseite als normale Inline-Buttons */
 #dish-container a#dish-video-link,
 #dish-container a.surprise-button {
     display: inline-flex !important;
@@ -299,7 +299,6 @@ main > #dish-container {
     background-color: #e03131;
 }
 
-/* Überschriften für Zutaten & Zubereitung */
 main > #dish-container h3 {
     font-size: 1.2rem;
     color: #333;
@@ -310,7 +309,6 @@ main > #dish-container h3 {
     font-weight: 600;
 }
 
-/* Zutaten-Liste */
 #dish-ingredients {
     list-style: disc;
     padding-left: 1.5rem;
@@ -322,7 +320,6 @@ main > #dish-container h3 {
     margin-bottom: 0.4rem;
 }
 
-/* Zubereitungsschritte */
 #dish-instructions-container {
     display: flex;
     flex-direction: column;
@@ -372,4 +369,81 @@ footer {
 footer a {
     color: #ff6b6b;
     text-decoration: none;
+}
+
+
+/* ========================================== */
+/* RESPONSIVE DESIGN (MEDIENABFRAGEN)         */
+/* ========================================== */
+
+/* Tablets und kleinere Laptops (max. 768px) */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    header ul {
+        gap: 1rem;
+    }
+
+    main {
+        margin: 1rem auto;
+        padding: 0 0.8rem;
+    }
+
+    main h1 {
+        font-size: 1.8rem;
+    }
+
+    #dish-title {
+        font-size: 1.6rem;
+    }
+
+    main > #dish-container {
+        padding: 1.2rem;
+    }
+}
+
+/* Smartphones (max. 480px) */
+@media (max-width: 480px) {
+    header h2 {
+        font-size: 1.5rem;
+    }
+
+    header ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem 1.2rem;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    #search-input, 
+    #search-button {
+        width: 100%;
+    }
+
+    /* Auf kleinen Handys Karten einspaltig oder kompakter machen */
+    main > div > #dish-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Buttons auf der Detailseite untereinander statt nebeneinander */
+    #dish-container a#dish-video-link,
+    #dish-container a.surprise-button {
+        display: flex !important;
+        width: 100% !important;
+        margin-right: 0;
+        margin-bottom: 0.8rem;
+        justify-content: center;
+    }
+
+    #dish-image {
+        max-height: 220px;
+    }
 }

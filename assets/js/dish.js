@@ -25,7 +25,7 @@ function showDishDetails(dish) {
     dishCountry.textContent = dish.strArea ?? dish.strCountry;
     dishCategory.textContent = dish.strCategory;
     dishTitle.textContent = dish.strMeal;
-    console.log(dish.strYoutube.length)
+    
     if (dish.strYoutube.length > 3) {
         dishVideo.href = dish.strYoutube
     } else {
@@ -52,7 +52,6 @@ async function getDish(dishId) {
     return fetch(url + path)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             return data.meals[0];
         });
 }
@@ -66,7 +65,6 @@ function schowDishInstructions(dish) {
     .map( str => str.replace(/[\r\n\t]+/g, ""))
     .filter((item) => item.length > 6 ? true : false)
 
-    console.log(dishInstructionsArray)
     for (let i = 0; i < dishInstructionsArray.length; i++) {
         if (dishInstructionsArray[i].length > 5) {
             const div = document.createElement("div")
