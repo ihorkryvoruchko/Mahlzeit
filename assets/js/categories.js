@@ -13,7 +13,7 @@ async function showCategories() {
     for (const category of categoryList) {
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.href = '../index.html?category=' + category.strCategory;
+        a.href = 'index.html?category=' + category.strCategory;
         a.textContent = category.strCategory;
         li.appendChild(a);
         categoryContainer.appendChild(li);
