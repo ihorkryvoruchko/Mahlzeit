@@ -1,5 +1,6 @@
 import { url } from './main.js';
 
+const dishContainer = document.getElementById('dish-container')
 const dishImage = document.getElementById('dish-image');
 const dishCountry = document.getElementById('dish-country');
 const dishCategory = document.getElementById('dish-category');
@@ -21,10 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function showDishDetails(dish) {
     dishImage.src = dish.strMealThumb + '/medium';
     dishImage.alt = dish.strMeal;
-    dishCountry.textContent = dish.strArea;
+    dishCountry.textContent = dish.strArea ?? dish.strCountry;
     dishCategory.textContent = dish.strCategory;
     dishTitle.textContent = dish.strMeal;
-    dishVideo.href = dish.strYoutube
+    console.log(dish.strYoutube.length)
+    if (dish.strYoutube.length > 3) {
+        dishVideo.href = dish.strYoutube
+    } else {
+        dishContainer.removeChild(dishVideo)
+    }
 
     const ingredientsList = getKeysStartingWith(dish, 'strIngredient');
     
@@ -56,21 +62,26 @@ function getKeysStartingWith(obj, prefix = "strIngredient") {
 }
 
 function schowDishInstructions(dish) {
-    const dishInstructionsArray = dish.strInstructions.split(". ")
+    let dishInstructionsArray = dish.strInstructions.split(".")
+    .map( str => str.replace(/[\r\n\t]+/g, ""))
+    .filter((item) => item.length > 6 ? true : false)
 
+    console.log(dishInstructionsArray)
     for (let i = 0; i < dishInstructionsArray.length; i++) {
-        const div = document.createElement("div")
-        div.classList.add("dish-instructions")
+        if (dishInstructionsArray[i].length > 5) {
+            const div = document.createElement("div")
+            div.classList.add("dish-instructions")
 
-        const divNumber = document.createElement("div")
-        divNumber.classList.add("dish-instructions-number")
-        divNumber.textContent = i + 1
+            const divNumber = document.createElement("div")
+            divNumber.classList.add("dish-instructions-number")
+            divNumber.textContent = i + 1
 
-        const divText = document.createElement("p")
-        divText.textContent = dishInstructionsArray[i]
-        div.appendChild(divNumber)
-        div.appendChild(divText)
+            const divText = document.createElement("p")
+            divText.textContent = dishInstructionsArray[i]
+            div.appendChild(divNumber)
+            div.appendChild(divText)
         
-        dishInstructions.appendChild(div)
+            dishInstructions.appendChild(div)
+        }
     }
 }
