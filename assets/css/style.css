@@ -1,0 +1,375 @@
+/* ========================================== */
+/* GRUNDLEGENDES STYLING & RESET              */
+/* ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ========================================== */
+/* HEADER & NAVIGATION                        */
+/* ========================================== */
+header {
+    background-color: #ffffff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h2 {
+    color: #ff6b6b;
+    font-size: 1.8rem;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+header ul li a:hover {
+    color: #ff6b6b;
+}
+
+/* ========================================== */
+/* HAUPTBEREICH (MAIN)                        */
+/* ========================================== */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+main h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+main h3 {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+/* ========================================== */
+/* SUCHFORMULAR & BUTTONS                     */
+/* ========================================== */
+form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+#search-input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+}
+
+#search-input:focus {
+    border-color: #ff6b6b;
+}
+
+#search-button, .btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+
+#search-button:hover, .btn:hover {
+    background-color: #fa5252;
+}
+
+/* ========================================== */
+/* KATEGORIEN-LEISTE                          */
+/* ========================================== */
+#category-container {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    white-space: nowrap;
+}
+
+#category-container li a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+#category-container li a:hover {
+    background-color: #ff6b6b;
+    color: white;
+    border-color: #ff6b6b;
+}
+
+/* ========================================== */
+/* STARTSEITE: GERICHTE-GRID                  */
+/* ========================================== */
+#dish-header {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+/* GRID NUR AUF DER STARTSEITE FÜR DIE CARDS */
+main > div > #dish-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.gericht-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.gericht-card:hover {
+    transform: translateY(-4px);
+}
+
+.gericht-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.dish-country-and-categorien-list {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem 0 1rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.dish-country-and-categorien-list li {
+    background: #f1f3f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.dish-title {
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    color: #333;
+    flex-grow: 1;
+}
+
+.dish-link {
+    display: block;
+    padding: 0.8rem 1rem;
+    background-color: #f8f9fa;
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-top: 1px solid #eee;
+}
+
+/* ========================================== */
+/* DETAILSEITE (dish.html) FIX                */
+/* ========================================== */
+
+/* Zurück Button */
+.back-button {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #555;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-button:hover {
+    color: #ff6b6b;
+}
+
+/* Der Hauptblock auf dish.html: KEIN GRID! Block-Layout verwenden */
+main > #dish-container {
+    display: block !important;
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+}
+
+/* Bildbegrenzung auf der Detailseite */
+#dish-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Tags (Land & Kategorie) */
+#dish-contry-and-categories {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    padding: 0;
+}
+
+#dish-contry-and-categories li {
+    background: #f1f3f5;
+    color: #495057;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Titel auf Detailseite */
+#dish-title {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 1rem;
+}
+
+/* Buttons auf der Detailseite als normale Inline-Buttons */
+#dish-container a#dish-video-link,
+#dish-container a.surprise-button {
+    display: inline-flex !important;
+    width: auto !important;
+    height: auto !important;
+    background-color: #ff6b6b;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#dish-container a#dish-video-link {
+    background-color: #e03131;
+}
+
+/* Überschriften für Zutaten & Zubereitung */
+main > #dish-container h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 2px solid #f1f3f5;
+    padding-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+/* Zutaten-Liste */
+#dish-ingredients {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+    color: #495057;
+}
+
+#dish-ingredients li {
+    margin-bottom: 0.4rem;
+}
+
+/* Zubereitungsschritte */
+#dish-instructions-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.dish-instructions {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: #f8f9fa;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #eaeaea;
+}
+
+.dish-instructions-number {
+    background-color: #ff6b6b;
+    color: white;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.dish-instructions p {
+    margin: 0;
+    color: #333;
+    padding-top: 0.2rem;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 3rem;
+}
+
+footer a {
+    color: #ff6b6b;
+    text-decoration: none;
+}
