@@ -15,9 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     getDish(dishId).then(dish => {
+            if (!dishId) {
+                setIdParamether(dish.idMeal);
+            }
             showDishDetails(dish);
         });
 });
+
+function setIdParamether(id) {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('id', id);
+
+    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+}
 
 function showDishDetails(dish) {
     dishImage.src = dish.strMealThumb + '/medium';
