@@ -1,6 +1,4 @@
-/* ========================================== */
-/* GRUNDLEGENDES STYLING & RESET              */
-/* ========================================== */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,9 +12,7 @@ body {
     line-height: 1.6;
 }
 
-/* ========================================== */
-/* HEADER & NAVIGATION                        */
-/* ========================================== */
+
 header {
     background-color: #ffffff;
     padding: 1rem 2rem;
@@ -57,9 +53,7 @@ header ul li a:hover {
     color: #ff6b6b;
 }
 
-/* ========================================== */
-/* HAUPTBEREICH (MAIN)                       */
-/* ========================================== */
+
 main {
     max-width: 1000px;
     margin: 2rem auto;
@@ -79,9 +73,7 @@ main h3 {
     font-weight: 400;
 }
 
-/* ========================================== */
-/* SUCHFORMULAR & BUTTONS                     */
-/* ========================================== */
+
 form {
     display: flex;
     gap: 0.5rem;
@@ -122,9 +114,7 @@ form {
     background-color: #fa5252;
 }
 
-/* ========================================== */
-/* KATEGORIEN-LEISTE                          */
-/* ========================================== */
+
 #category-container {
     list-style: none;
     display: flex;
@@ -132,6 +122,12 @@ form {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-bottom: 2rem;
+}
+
+.current-category {
+    background-color: #ff6b6b !important;
+    color: white !important;
+    border-color: #ff6b6b !important;
 }
 
 #category-container li a {
@@ -152,9 +148,7 @@ form {
     border-color: #ff6b6b;
 }
 
-/* ========================================== */
-/* STARTSEITE: GERICHTE-GRID                  */
-/* ========================================== */
+
 #dish-header {
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -222,9 +216,7 @@ main > div > #dish-container {
     border-top: 1px solid #eee;
 }
 
-/* ========================================== */
-/* DETAILSEITE (dish.html)                    */
-/* ========================================== */
+
 .back-button {
     display: inline-block;
     margin-bottom: 1.5rem;
@@ -372,11 +364,6 @@ footer a {
 }
 
 
-/* ========================================== */
-/* RESPONSIVE DESIGN (MEDIENABFRAGEN)         */
-/* ========================================== */
-
-/* Tablets und kleinere Laptops (max. 768px) */
 @media (max-width: 768px) {
     header {
         padding: 1rem;
@@ -407,7 +394,7 @@ footer a {
     }
 }
 
-/* Smartphones (max. 480px) */
+
 @media (max-width: 480px) {
     header h2 {
         font-size: 1.5rem;

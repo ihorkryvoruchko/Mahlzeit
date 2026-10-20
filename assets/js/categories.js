@@ -4,15 +4,20 @@ const categoryList = [];
 const categoryContainer = document.getElementById('category-container');
 
 document.addEventListener('DOMContentLoaded', () => {
-    showCategories();
+    const params = new URLSearchParams(window.location.search)
+    const currentCategory = params.get('category')
+    showCategories(currentCategory);
 });
 
-async function showCategories() {
+async function showCategories(currentCategory = null) {
     await getCategories();
     
     for (const category of categoryList) {
         const li = document.createElement('li');
         const a = document.createElement('a');
+        if (currentCategory === category.strCategory) {
+            a.classList.add('current-category');
+        }
         a.href = 'index.html?category=' + category.strCategory;
         a.textContent = category.strCategory;
         li.appendChild(a);
