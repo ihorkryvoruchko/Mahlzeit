@@ -10,19 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search)
     const category = params.get('category')
     const search = params.get('search')
-    showDishes(category, search)
+    const area = params.get('area')
+    const country = params.get('country')
+
+    showDishes(category, search, area, country)
 })
 
 searchButton.addEventListener("click", (event) => {
     document.location.href = `index.html?search=${searchInput.value}`
 })
 
-async function showDishes(category, search) {
+async function showDishes(category, search, area, country) {
     if (category) {
         dishHeaderContainer.textContent = `${category} Gerichte`
+    } else if (area) {
+        dishHeaderContainer.textContent = `${area} Gerichte`
     }
 
-    await getDishes(category, search)
+    await getDishes(category, search, country)
 
     for (const dish of dishList) {
         const div = document.createElement('div')
@@ -81,18 +86,21 @@ function createLink(dish) {
     return link
 }
    
-async function getDishes(category = null, search = null) {
+async function getDishes(category = null, search = null, country = null) {
     let path = 'search.php?s=a'
     
     if (category) {
         path = `filter.php?c=${category}`
     } else if (search) {
         path = 'search.php?s=' + search
+    } else if (country) {
+        path = `filter.php?a=${country}`
     }
-
+    
     return fetch(url + path)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             dishList.push(...data.meals)
         })
 }

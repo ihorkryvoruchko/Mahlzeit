@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function showCategories(currentCategory = null) {
     await getCategories();
-    
+
     for (const category of categoryList) {
         const li = document.createElement('li');
         const a = document.createElement('a');
@@ -23,7 +23,8 @@ async function showCategories(currentCategory = null) {
         li.appendChild(a);
         categoryContainer.appendChild(li);
     }
-}    
+}  
+
 async function getCategories() {
     return fetch(url + 'categories.php' )
         .then(response => response.json())
