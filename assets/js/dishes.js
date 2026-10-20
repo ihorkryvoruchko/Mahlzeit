@@ -24,7 +24,7 @@ async function showDishes(category, search, area, country) {
     if (category) {
         dishHeaderContainer.textContent = `${category} Gerichte`
     } else if (area) {
-        dishHeaderContainer.textContent = `${area} Gerichte`
+        dishHeaderContainer.textContent = `${area || country} Gerichte`
     }
 
     await getDishes(category, search, country)

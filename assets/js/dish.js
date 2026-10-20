@@ -33,7 +33,8 @@ function setIdParamether(id) {
 function showDishDetails(dish) {
     dishImage.src = dish.strMealThumb + '/medium';
     dishImage.alt = dish.strMeal;
-    dishCountry.textContent = dish.strArea ?? dish.strCountry;
+    dishCountry.querySelector('a').textContent = dish.strArea ?? dish.strCountry;
+    dishCountry.querySelector('a').href = `index.html?country=${dish.strCountry}&area=${dish.strArea}`;
     dishCategory.textContent = dish.strCategory;
     dishTitle.textContent = dish.strMeal;
     
